@@ -11,14 +11,15 @@ class Board {
     }
 
     public isSolved(): boolean {
-        for (let row = 0; row < this.rows(); row++) {
-            for (let column = 0; column < this.columns(); column++) {
+        let isSolved: boolean = true;
+        for (let row = 0; row < this.rows() && isSolved; row++) {
+            for (let column = 0; column < this.columns() && isSolved; column++) {
                 if (!this.matchesOtherPices(row, column)) {
-                    return false;
+                    isSolved = false;
                 }
             }
         }
-        return true;
+        return isSolved;
     }
 
     public rows(): number {

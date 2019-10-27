@@ -17,7 +17,6 @@ for (let row = 0; row < board.rows(); row++) {
 }
 
 
-
 console.log("starting solving");
 
 while (!board.isSolved()) {
@@ -69,7 +68,7 @@ function doRotations() {
 
 function printSolutionsTried() {
     if (solutionCount !== 0 && ((solutionCount) % 1000000) == 0) {
-        console.log(((solutionCount / maxSolutions ) * 100).toFixed(2) + "%");
+        console.log(((solutionCount / maxSolutions) * 100).toFixed(2) + "%");
     }
 }
 
