@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "strict": true,
+    "module": "None",
+    "outFile": "solver.js",
+    "sourceMap": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+}
