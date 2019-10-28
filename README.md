@@ -18,3 +18,18 @@ P<sub>9</sub> * 4<sup>9</sup> = 9! * 4<sup>9</sup> = 95126814720
 * ```npm install -g typescript```
 * ```tsc```
 * ```node solver.js```
+
+## Solution
+
+* Solver run time ~ 34 minutes (i7-8650U)  
+* Solver result:  
+```
+15.91%
+finished solving at solution  15135911075
+using permutation  [ 1, 4, 5, 2, 0, 8, 3, 6, 7 ]
+solution is:
+label:2;up:flag label:5;up:bird label:6;up:bird
+label:3;up:bird label:1;up:fish label:9;up:fish
+label:4;up:fish label:7;up:bird label:8;up:bird
+
+```
