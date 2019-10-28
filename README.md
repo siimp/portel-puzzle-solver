@@ -33,3 +33,5 @@ label:3;up:bird label:1;up:fish label:9;up:fish
 label:4;up:fish label:7;up:bird label:8;up:bird
 
 ```
+
+See [static directory](static) folder for pieces and their corresponding labels.
