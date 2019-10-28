@@ -1,42 +1,10 @@
-let boardPermutations: number[][] = generateAllPermutations([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+let boardPermutations: number[][] = MathUtil.generateAllPermutations([0, 1, 2, 3, 4, 5, 6, 7, 8]);
 let boardPermutationIndex = 0;
 let board: Board = initializeBoard();
 
 let rotationsPerBoardLayout = Math.pow(4, board.rows() * board.columns());
 let solutionCount = 0;
-let maxSolutions = factorial(board.rows() * board.columns()) * rotationsPerBoardLayout;
-
-const PRE_CALC_ROTATION_THRESHOLD: number[][] = [];
-for (let row = 0; row < board.rows(); row++) {
-    PRE_CALC_ROTATION_THRESHOLD[row] = [];
-    for (let column = 0; column < board.columns(); column++) {
-        let pieceIndex = row * board.columns() + column;
-        let val = Math.pow(4, pieceIndex);
-        PRE_CALC_ROTATION_THRESHOLD[row][column] = val;
-    }
-}
-
-
-console.log("starting solving");
-
-while (!board.isSolved()) {
-    printSolutionsTried();
-
-    if (!hasNextSolution()) {
-        throw new Error("tried " + solutionCount + " solutions, non found");
-    }
-    nextSolution();
-}
-
-console.log("finished solving at solution ", solutionCount);
-console.log("using permutation ", boardPermutations[boardPermutationIndex]);
-console.log("solution is:");
-console.log(board.toString())
-
-
-
-
-
+let maxSolutions = MathUtil.factorial(board.rows() * board.columns()) * rotationsPerBoardLayout;
 
 function hasNextSolution(): boolean {
     return solutionCount < maxSolutions;
@@ -53,6 +21,16 @@ function nextSolution() {
 
 function isNextLayout(): boolean {
     return solutionCount >= rotationsPerBoardLayout && solutionCount % rotationsPerBoardLayout === 0;
+}
+
+const PRE_CALC_ROTATION_THRESHOLD: number[][] = [];
+for (let row = 0; row < board.rows(); row++) {
+    PRE_CALC_ROTATION_THRESHOLD[row] = [];
+    for (let column = 0; column < board.columns(); column++) {
+        let pieceIndex = row * board.columns() + column;
+        let val = Math.pow(4, pieceIndex);
+        PRE_CALC_ROTATION_THRESHOLD[row][column] = val;
+    }
 }
 
 function doRotations() {
@@ -72,39 +50,6 @@ function printSolutionsTried() {
     }
 }
 
-function factorial(n: number): number {
-    if (n == 0 || n == 1) {
-        return 1;
-    }
-    return factorial(n - 1) * n;
-}
-
-// https://medium.com/@rwillt/two-very-different-algorithms-for-generating-permutations-412e8cc0039c
-function generateAllPermutations(array: number[]): number[][] {
-    if (array.length < 2) {
-        // Base case, return single-element array wrapped in another array
-        return [array];
-    } else {
-        let perms = [];
-        for (let index = 0; index < array.length; index++) {
-            // Make a fresh copy of the passed array and remove the current element from it
-            let rest = array.slice();
-            rest.splice(index, 1);
-
-            // Call our function on that sub-array, storing the result: an array of arrays
-            let ps = generateAllPermutations(rest);
-
-            // Add the current element to the beginning of each sub-array and add the new
-            // permutation to the output array
-            const current = [array[index]]
-            for (let p of ps) {
-                perms.push(current.concat(p));
-            }
-        }
-        return perms;
-    }
-}
-
 function initializeBoard(): Board {
     let p: number[] = boardPermutations[boardPermutationIndex];
     return new Board([
@@ -114,3 +59,18 @@ function initializeBoard(): Board {
     ]);
 }
 
+console.log("starting solving");
+
+while (!board.isSolved()) {
+    printSolutionsTried();
+
+    if (!hasNextSolution()) {
+        throw new Error("tried " + solutionCount + " solutions, non found");
+    }
+    nextSolution();
+}
+
+console.log("finished solving at solution ", solutionCount);
+console.log("using permutation ", boardPermutations[boardPermutationIndex]);
+console.log("solution is:");
+console.log(board.toString())
