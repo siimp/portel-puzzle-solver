@@ -15,9 +15,8 @@ P<sub>9</sub> * 4<sup>9</sup> = 9! * 4<sup>9</sup> = 95126814720
 * nodejs and npm
 
 ## How to run 
-* ```npm install -g typescript```
-* ```tsc```
-* ```node solver.js```
+* ```npm install```
+* ```npm run solve```
 
 ## Solution
 
