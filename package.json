@@ -1,0 +1,10 @@
+{
+  "name": "portel-puzzle-solver",
+  "version": "1.0.0",
+  "scripts": {
+    "solve": "tsc && node solver.js"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  }
+}
